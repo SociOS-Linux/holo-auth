@@ -19,13 +19,13 @@ const addZeroTierMember = async (address, name, description) => {
 const handle = async req => {
   try {
     const payload = await req.json();
-    const { data, signature } = payload
-
-    const { email, holochain_agent_id, zerotier_address } = data
+    const { data } = payload
+    const { email, holochain_agent_id, zerotier_address, holoport_url } = data
 
     return addZeroTierMember(zerotier_address, holochain_agent_id, email)
   } catch (e) {
-    respond(401)
+    console.log(e)
+    return respond(401)
   }
 }
 
